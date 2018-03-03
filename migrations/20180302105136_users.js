@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
     table.integer('age').notNullable()
     table.integer('weight').notNullable()
     table.integer('cycle_length').notNullable().defaultsTo(28)
-    table.string('last_day').notNullable()
+    table.date('last_day').notNullable()
     table.string('email').notNullable()
     table.string('password_hash').notNullable()
     table.string('profile_pic')
