@@ -13,7 +13,7 @@ exports.up = function(knex, Promise) {
     table.string('profile_pic')
     table.string('bio')
     table.string('certifications')
-    table.integer('trainer_id')
+    table.integer('trainer_id').defaultsTo(0)
     table.boolean('is_trainer').notNullable()
     table.boolean('is_public').notNullable()
     table.boolean('non_hormonal').notNullable()
