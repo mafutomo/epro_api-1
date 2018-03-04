@@ -9,6 +9,7 @@ Routes
 - /users/:id/workouts
 - /users/:id/workouts/date
 - /exercises/
+- /exercises/:id
 - /phase_tips/
 - /phase_tips/:id
 - /users/register
