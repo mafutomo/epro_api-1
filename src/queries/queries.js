@@ -3,9 +3,6 @@ const router = express.Router()
 const knex = require('../../knex')
 const bodyParser = require('body-parser')
 
-const testQuery = (req, res, next) => {
-  console.log("hello!")
-}
 
 const getAllUsers = (req, res, next) => {
   knex('users').then(data => {
@@ -14,7 +11,16 @@ const getAllUsers = (req, res, next) => {
   })
 }
 
+const getUserByID = (req, res, next) => {
+  knex('users').where({
+    id: req.params.id
+  })
+  .then(data => {
+    res.status(200).send(data)
+  })
+}
+
 module.exports = {
-  testQuery,
-  getAllUsers
+  getAllUsers,
+  getUserByID
 }

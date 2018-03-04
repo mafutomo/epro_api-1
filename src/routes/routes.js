@@ -6,14 +6,15 @@ const queries = require('../queries/queries.js')
 
 router.use(express.static('public'))
 
-router.get('/test/', queries.testQuery)
-
 //GET
 router.get('/users/', queries.getAllUsers)
-router.get('/hormones/',queries.getHormones)
-router.get('/users/', queries.getAllTrainers)
-router.get('/users/:id/workouts', queries.getAllWorkoutsForUser)
-router.get('/users/:id/workouts/date', queries.getWorkoutsForUserByDate)
+// router.get('/hormones/',queries.getHormones)
+// router.get('/users/', queries.getAllTrainers)
+// router.get('/users/:id/workouts', queries.getAllWorkoutsForUser)
+// router.get('/users/:id/workouts/date', queries.getWorkoutsForUserByDate)
+
+//GET by id:
+router.get('/users/:id', queries.getUserByID)
 
 
 module.exports = router
