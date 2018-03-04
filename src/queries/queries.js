@@ -275,6 +275,67 @@ const createUser = (req, res, next) => {
     })
  }
 
+ const updateUser = (req, res, next) => {
+   if (!req.params.id) res.sendStatus(404)
+   let body = req.body
+   knex('users')
+   .where({
+     id: req.params.id
+   })
+   .update({
+     first_name: body.firstName,
+     last_name: body.lastName,
+     age: body.age,
+     weight: body.weight,
+     cycle_length: body.cycleLength,
+     last_day: body.lastDay,
+     email: body.email,
+     profile_pic: body.profilePic,
+     bio: body.bio,
+     certifications: body.certifications,
+     trainer_id: body.trainer_id,
+     is_trainer: body.isTrainer,
+     is_public: body.isPublic,
+     non_hormonal: body.isNonHormonal,
+     triphasic: body.isTriphasic,
+     monophasic: body.isMonophasic,
+     progestin: body.isProgestin
+   })
+   .then(data => {
+      res.status(200).send(data)
+   })
+   .catch(err => {
+     console.log(err);
+   })
+ }
+
+ const updateExercise = (req, res, next) => {
+   if (!req.params.id) res.sendStatus(404)
+   let body = req.body
+   knex('exercises')
+   .where({
+     id : req.params.id
+   })
+   .update({
+      name: body.name,
+      description: body.description,
+      sets: body.sets,
+      sets_actual: body.setsActual,
+      reps: body.reps,
+      reps_actual: body.repsActual,
+      weight: body.weight,
+      weight_actual: body.weightActual,
+      time: body.time,
+      time_actual: body.timeActual
+   })
+   .then(data => {
+     res.status(200).send(data)
+   })
+   .catch(err => {
+     console.log(err);
+   })
+ }
+
  const deleteUser = (req, res, next) => {
    if (!req.params.id) res.sendStatus(404)
    knex('users')
@@ -324,6 +385,7 @@ const createUser = (req, res, next) => {
  }
 
 
+
 module.exports = {
   getAllUsers,
   getAllTrainers,
@@ -344,6 +406,8 @@ module.exports = {
   createUser,
   createWorkout,
   createExercise,
+  updateUser,
+  updateExercise,
   deleteUser,
   deleteWorkout,
   deleteExercise,

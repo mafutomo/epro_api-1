@@ -8,7 +8,12 @@ const queries = require('../queries/queries')
 
 router.use(express.static('public'))
 
-//GET
+//CREATE
+router.post('/users/', queries.createUser)
+router.post('/users/:id/workouts/', queries.createWorkout)
+router.post('/exercises/',queries.createExercise)
+
+//READ
 router.get('/users/', queries.getAllUsers)
 router.get('/hormones/monophasic',queries.getAllMonophasic)
 router.get('/hormones/non_hormonal',queries.getAllNonHormonal)
@@ -19,7 +24,7 @@ router.get('/users/:id/workouts/', queries.getAllWorkoutsForUser)
 router.get('/phase_tips/',queries.getAllPhaseTips)
 router.get('/users/:id/workouts/:date', queries.getWorkoutsForUserByDate)
 
-//GET by id:
+//READ by id
 router.get('/users/:id', queries.getUserByID)
 router.get('/users/trainers/:id', queries.getTrainerByID)
 router.get('/hormones/monophasic/:id',queries.getMonophasicById)
@@ -28,10 +33,9 @@ router.get('/hormones/triphasic/:id',queries.getTriphasicById)
 router.get('/hormones/progestin/:id',queries.getProgestinById)
 router.get('/phase_tips/:id',queries.getPhaseTipsById)
 
-//POST
-router.post('/users/', queries.createUser)
-router.post('/users/:id/workouts/', queries.createWorkout)
-router.post('/exercises/',queries.createExercise)
+//UPDATE
+router.patch('/users/:id', queries.updateUser)
+router.patch('/exercises/:id', queries.updateExercise)
 
 //DELETE
 router.delete('/users/:id',queries.deleteUser)
