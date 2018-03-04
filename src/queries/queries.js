@@ -49,8 +49,9 @@ const getAllTrainers = (req, res, next) => {
 }
 
 const getAllWorkoutsForUser = (req, res, next) => {
+  console.log(req.params.id);
   knex('workouts').where({
-    client_id: req.params.id
+    'client_id': req.params.id
   })
   .then(data => {
     res.status(200).send(data)
@@ -124,8 +125,14 @@ const getUserByID = (req, res, next) => {
 }
 
 const getWorkoutsForUserByDate = (req, res, next) => {
-  console.log(req.params)
-  console.log('getWorkoutsForUserByDate');
+  console.log(req.params.date)
+  knex('workouts').where({
+    client_id: req.params.id,
+    date: req.params.date
+  })
+  .then(data => {
+    res.status(200).send(data)
+  })
 }
 
 const getTrainerByID = (req, res, next) => {
@@ -142,29 +149,29 @@ const createUser = (req, res, next) => {
   // bcrypt stuff
   // let salt = bcrypt.genSaltSync(4)
   // let hash = bcrypt.hashSync(req.body.password, salt)
-   knex('users').insert({
-     first_name: req.body.firstName,
-     last_name: req.body.lastName,
-     age: req.body.age,
-     weight: req.body.weight
-     cycle_length: req.body.cycleLength,
-     last_day: req.body.lastDay,
-     email: req.body.email,
-     password_hash: hash,
-     profile_pic: req.body.profilePic,
-     bio: req.body.bio,
-     certifications: req.body.certifications,
-     trainer_id: req.body.trainer_id,
-     is_trainer: req.body.isTrainer,
-     is_public: req.body.isPublic,
-     non_hormonal: req.body.isNonHormonal,
-     triphasic: req.body.isTriphasic,
-     monophasic: req.body.isMonophasic,
-     progestin: req.body.isProgestin
-   }, '*')
-   .then(user => {
-     res.status(204).send(user)
-   })
+   // knex('users').insert({
+   //   first_name: req.body.firstName,
+   //   last_name: req.body.lastName,
+   //   age: req.body.age,
+   //   weight: req.body.weight
+   //   cycle_length: req.body.cycleLength,
+   //   last_day: req.body.lastDay,
+   //   email: req.body.email,
+   //   password_hash: hash,
+   //   profile_pic: req.body.profilePic,
+   //   bio: req.body.bio,
+   //   certifications: req.body.certifications,
+   //   trainer_id: req.body.trainer_id,
+   //   is_trainer: req.body.isTrainer,
+   //   is_public: req.body.isPublic,
+   //   non_hormonal: req.body.isNonHormonal,
+   //   triphasic: req.body.isTriphasic,
+   //   monophasic: req.body.isMonophasic,
+   //   progestin: req.body.isProgestin
+   // }, '*')
+   // .then(user => {
+   //   res.status(204).send(user)
+   // })
 }
 
 

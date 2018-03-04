@@ -13,9 +13,9 @@ router.get('/hormones/non_hormonal',queries.getAllNonHormonal)
 router.get('/hormones/triphasic',queries.getAllTriphasic)
 router.get('/hormones/progestin',queries.getAllProgestin)
 router.get('/users/trainers/', queries.getAllTrainers)
-router.get('/users/:id/workouts', queries.getAllWorkoutsForUser)
+router.get('/users/:id/workouts/', queries.getAllWorkoutsForUser)
 router.get('/phase_tips/',queries.getAllPhaseTips)
-// router.get('/users/:id/workouts/date', queries.getWorkoutsForUserByDate)
+router.get('/users/:id/workouts/:date', queries.getWorkoutsForUserByDate)
 
 //GET by id:
 router.get('/users/:id', queries.getUserByID)
@@ -28,6 +28,9 @@ router.get('/phase_tips/:id',queries.getPhaseTipsById)
 
 //POST
 router.post('/users/', queries.createUser)
-router.post('/users/:id/workouts/', queries.createWorkout)
+// router.post('/users/:id/workouts/', queries.createWorkout)
+
+//DELETE
+router.delete('/')
 
 module.exports = router
