@@ -3,14 +3,14 @@ E/PRO Backend API
 Routes
 
 - /users
-- /users/:id/workouts
-- /users/:id/workouts/date
 - /users/:id
 - /users/trainers
 - /users/trainers/:id
+- /users/:id/workouts
+- /users/:id/workouts/date
+- /exercises/
 - /phase_tips/
 - /phase_tips/:id
-- /user/workouts/:id/comments
 - /users/register
 - /auth/login
 - /auth/status

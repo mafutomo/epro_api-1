@@ -9,12 +9,18 @@ const getAllMonophasic = (req, res, next) => {
     .then(data => {
       res.status(200).send(data)
   })
+  .catch(err => {
+   console.log(err)
+  })
 }
 
 const getAllNonHormonal = (req, res, next) => {
   knex('non_hormonal')
     .then(data => {
       res.status(200).send(data)
+  })
+  .catch(err => {
+   console.log(err)
   })
 }
 
@@ -23,12 +29,18 @@ const getAllTriphasic = (req, res, next) => {
     .then(data => {
       res.status(200).send(data)
   })
+  .catch(err => {
+   console.log(err)
+  })
 }
 
 const getAllProgestin = (req, res, next) => {
   knex('progestin_hormones')
     .then(data => {
       res.status(200).send(data)
+  })
+  .catch(err => {
+   console.log(err)
   })
 }
 
@@ -37,24 +49,35 @@ const getAllUsers = (req, res, next) => {
     .then(data => {
       res.status(200).send(data)
   })
+  .catch(err => {
+   console.log(err)
+  })
 }
 
 const getAllTrainers = (req, res, next) => {
-  knex('users').where({
+  knex('users')
+  .where({
     is_trainer: true
   })
   .then(data => {
     res.status(200).send(data)
   })
+  .catch(err => {
+   console.log(err)
+  })
 }
 
 const getAllWorkoutsForUser = (req, res, next) => {
   console.log(req.params.id);
-  knex('workouts').where({
+  knex('workouts')
+  .where({
     'client_id': req.params.id
   })
   .then(data => {
     res.status(200).send(data)
+  })
+  .catch(err => {
+   console.log(err)
   })
 }
 
@@ -62,6 +85,9 @@ const getAllPhaseTips = (req, res, next) =>{
   knex('phase_tips')
   .then(data => {
     res.status(200).send(data)
+  })
+  .catch(err => {
+   console.log(err)
   })
 }
 
@@ -73,6 +99,9 @@ const getMonophasicById = (req, res, next) => {
   .then(data => {
     res.status(200).send(data)
   })
+  .catch(err => {
+   console.log(err)
+  })
 }
 
 const getNonHormonalById = (req, res, next) => {
@@ -82,6 +111,9 @@ const getNonHormonalById = (req, res, next) => {
   })
   .then(data => {
     res.status(200).send(data)
+  })
+  .catch(err => {
+   console.log(err)
   })
 }
 
@@ -93,6 +125,9 @@ const getTriphasicById = (req, res, next) => {
   .then(data => {
     res.status(200).send(data)
   })
+  .catch(err => {
+   console.log(err)
+  })
 }
 
 const getProgestinById = (req, res, next) => {
@@ -102,6 +137,9 @@ const getProgestinById = (req, res, next) => {
   })
   .then(data => {
     res.status(200).send(data)
+  })
+  .catch(err => {
+   console.log(err)
   })
 }
 
@@ -113,66 +151,177 @@ const getPhaseTipsById = (req, res, next) =>{
   .then(data => {
     res.status(200).send(data)
   })
+  .catch(err => {
+   console.log(err)
+  })
 }
 
 const getUserByID = (req, res, next) => {
-  knex('users').where({
+  knex('users')
+  .where({
     id: req.params.id
   })
   .then(data => {
     res.status(200).send(data)
   })
+  .catch(err => {
+   console.log(err)
+  })
 }
 
 const getWorkoutsForUserByDate = (req, res, next) => {
   console.log(req.params.date)
-  knex('workouts').where({
+  knex('workouts')
+  .where({
     client_id: req.params.id,
     date: req.params.date
   })
   .then(data => {
     res.status(200).send(data)
   })
+  .catch(err => {
+   console.log(err)
+  })
 }
 
 const getTrainerByID = (req, res, next) => {
-  knex('users').where({
+  knex('users')
+  .where({
     id: req.params.id,
     is_trainer: true
   })
   .then(data => {
     res.status(200).send(data)
   })
+  .catch(err => {
+   console.log(err)
+  })
 }
 
 const createUser = (req, res, next) => {
-  // bcrypt stuff
+  let body = req.body
+  //// BCRYPT STUFF >>
   // let salt = bcrypt.genSaltSync(4)
-  // let hash = bcrypt.hashSync(req.body.password, salt)
-   // knex('users').insert({
-   //   first_name: req.body.firstName,
-   //   last_name: req.body.lastName,
-   //   age: req.body.age,
-   //   weight: req.body.weight
-   //   cycle_length: req.body.cycleLength,
-   //   last_day: req.body.lastDay,
-   //   email: req.body.email,
-   //   password_hash: hash,
-   //   profile_pic: req.body.profilePic,
-   //   bio: req.body.bio,
-   //   certifications: req.body.certifications,
-   //   trainer_id: req.body.trainer_id,
-   //   is_trainer: req.body.isTrainer,
-   //   is_public: req.body.isPublic,
-   //   non_hormonal: req.body.isNonHormonal,
-   //   triphasic: req.body.isTriphasic,
-   //   monophasic: req.body.isMonophasic,
-   //   progestin: req.body.isProgestin
-   // }, '*')
-   // .then(user => {
-   //   res.status(204).send(user)
-   // })
-}
+  // let hash = bcrypt.hashSync(body.password, salt)
+   knex('users')
+     .insert({
+       first_name: body.firstName,
+       last_name: body.lastName,
+       age: body.age,
+       weight: body.weight,
+       cycle_length: body.cycleLength,
+       last_day: body.lastDay,
+       email: body.email,
+       //// BCRYPT HASH >>
+       // password_hash: hash,
+       profile_pic: body.profilePic,
+       bio: body.bio,
+       certifications: body.certifications,
+       trainer_id: body.trainer_id,
+       is_trainer: body.isTrainer,
+       is_public: body.isPublic,
+       non_hormonal: body.isNonHormonal,
+       triphasic: body.isTriphasic,
+       monophasic: body.isMonophasic,
+       progestin: body.isProgestin
+   }, '*')
+   .then(data => {
+     res.status(200).send(data)
+   })
+   .catch(err => {
+    console.log(err)
+  })
+ }
+
+ const createWorkout = (req, res, next) => {
+   let body = req.body
+   let userId = req.params.id
+   knex('workouts')
+   .insert({
+      client_id: userId,
+      trainer_id: userId,
+      date: body.date,
+      name: body.name,
+      created_by_trainer: body.createdByTrainer
+   },'*')
+   .then(data => {
+     res.status(200).send(data)
+   })
+   .catch(err => {
+    console.log(err)
+    })
+ }
+
+ const createExercise = (req, res, next) => {
+   let body = req.body
+   knex('exercises')
+   .insert({
+      name: body.name,
+      description: body.description,
+      sets: body.sets,
+      sets_actual: body.setsActual,
+      reps: body.reps,
+      reps_actual: body.repsActual,
+      weight: body.weight,
+      weight_actual: body.weightActual,
+      time: body.time,
+      time_actual: body.timeActual
+   },'*')
+   .then(data => {
+     res.status(200).send(data)
+   })
+   .catch(err => {
+    console.log(err)
+    })
+ }
+
+ const deleteUser = (req, res, next) => {
+   if (!req.params.id) res.sendStatus(404)
+   knex('users')
+   .where({
+     id: req.params.id
+   })
+   .del()
+   .returning('*')
+   .then(data => {
+     res.status(200).send(data)
+   })
+   .catch(err => {
+    console.log(err)
+    })
+ }
+
+ const deleteWorkout = (req, res, next) => {
+   if (!req.params.id) res.sendStatus(404)
+   knex('workouts')
+   .where({
+     id: req.params.id
+   })
+   .del()
+   .returning('*')
+   .then(data => {
+     res.status(200).send(data)
+   })
+   .catch(err => {
+    console.log(err)
+    })
+ }
+
+ const deleteExercise = (req, res, next) => {
+   if (!req.params.id) res.sendStatus(404)
+   knex('exercises')
+   .where({
+     id: req.params.id
+   })
+   .del()
+   .returning('*')
+   .then(data => {
+     res.status(200).send(data)
+   })
+   .catch(err => {
+    console.log(err)
+    })
+ }
 
 
 module.exports = {
@@ -192,5 +341,10 @@ module.exports = {
   getProgestinById,
   getAllPhaseTips,
   getPhaseTipsById,
-  createUser
+  createUser,
+  createWorkout,
+  createExercise,
+  deleteUser,
+  deleteWorkout,
+  deleteExercise,
 }

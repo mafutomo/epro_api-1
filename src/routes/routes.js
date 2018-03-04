@@ -1,8 +1,10 @@
+'use strict';
+
 const express = require('express')
 const router = express.Router()
-const knex = require('../../knex.js');
+const knex = require('../../knex')
 const bodyParser = require('body-parser')
-const queries = require('../queries/queries.js')
+const queries = require('../queries/queries')
 
 router.use(express.static('public'))
 
@@ -28,9 +30,12 @@ router.get('/phase_tips/:id',queries.getPhaseTipsById)
 
 //POST
 router.post('/users/', queries.createUser)
-// router.post('/users/:id/workouts/', queries.createWorkout)
+router.post('/users/:id/workouts/', queries.createWorkout)
+router.post('/exercises/',queries.createExercise)
 
 //DELETE
-router.delete('/')
+router.delete('/users/:id',queries.deleteUser)
+router.delete('/workouts/:id',queries.deleteWorkout)
+router.delete('/exercises/:id',queries.deleteExercise)
 
 module.exports = router

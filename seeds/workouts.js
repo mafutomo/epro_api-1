@@ -36,7 +36,7 @@ exports.seed = function(knex, Promise) {
         }
       ])
       .then(function(){
-        return knex.raw("SELECT setval('workouts_id_seq', (SELECT MAX(id) FROM workouts))")
+        return knex.raw(`SELECT setval('workouts_id_seq', (SELECT MAX(id) FROM workouts))`)
         })
     });
 };
