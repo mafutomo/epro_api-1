@@ -13,9 +13,9 @@ router.get('/users/trainers/', queries.getAllTrainers)
 router.get('/users/:id/workouts', queries.getAllWorkoutsForUser)
 router.get('/users/:id/workouts/date', queries.getWorkoutsForUserByDate)
 
-
 //GET by id:
 router.get('/users/:id', queries.getUserByID)
+// router.get('users/trainers/:id', queries.getTrainerByID)
 
 //POST
 router.post('/users/', queries.createUser)

@@ -40,6 +40,16 @@ const getUserByID = (req, res, next) => {
   })
 }
 
+const getTrainerByID = (req, res, next) => {
+  knex('users').where({
+    id: req.params.id,
+    is_trainer: true
+  })
+  .then(data => {
+    res.status(200).send(data)
+  })
+}
+
 const createUser = (req, res, next) => {
   console.log('createUser')
   // bcrypt stuff
@@ -63,5 +73,6 @@ module.exports = {
   getAllWorkoutsForUser,
   getWorkoutsForUserByDate,
   getUserByID,
+  getTrainerByID,
   createUser
 }
