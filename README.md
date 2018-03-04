@@ -6,8 +6,10 @@ Routes
 - /users/:id/workouts
 - /users/:id/workouts/date
 - /users/:id
-- /hormones/:id
-- /nutrition_tips/:id
+- /users/trainers
+- /users/trainers/:id
+- /phase_tips/
+- /phase_tips/:id
 - /user/workouts/:id/comments
 - /users/register
 - /auth/login
@@ -17,3 +19,7 @@ Routes
 - /hormones/triphasic
 - /hormones/monophasic
 - /hormones/progestin
+- /hormones/non_hormonal/:id
+- /hormones/triphasic/:id
+- /hormones/monophasic/:id
+- /hormones/progestin/:id
