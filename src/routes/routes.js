@@ -20,7 +20,7 @@ router.get('/hormones/non_hormonal',queries.getAllNonHormonal)
 router.get('/hormones/triphasic',queries.getAllTriphasic)
 router.get('/hormones/progestin',queries.getAllProgestin)
 router.get('/users/trainers/', queries.getAllTrainers)
-router.get('/users/:id/workouts/', queries.getAllWorkoutsForUser)
+router.get('/users/:id/workouts/', queries.getAllWorkoutsForUser) //dropdown functionality
 router.get('/phase_tips/',queries.getAllPhaseTips)
 router.get('/users/:id/workouts/:date', queries.getWorkoutsForUserByDate)
 
