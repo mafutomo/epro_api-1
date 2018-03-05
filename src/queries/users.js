@@ -7,7 +7,7 @@ const { jwtVerifyAsync } = require('../utils/jsonwebTokenAsync')
 const UsersService = require('../services/UsersService')
 const { checkForToken, parseToken, verifyIsLoggedIn, checkForAccessToSecret } = require('./auth.js')
 
-const getAllUsers = (checkForToken, parseToken, verifyIsLoggedIn, checkForAccessToSecret, (req, res, next)) => {
+const getAllUsers = (req, res, next) => {
   knex('users')
     .then(data => {
       res.status(200).send(data)
