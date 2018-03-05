@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-const { jwtSignAsync } = require('../utils/jsonwebTokenAsync');
+const jwt = require('jsonwebtoken');
+const { jwtSignAsync } = require('../utils/jsonWebTokenAsync');
 const UsersService = require('../services/UsersService');
 
 router.use(bodyParser.json());

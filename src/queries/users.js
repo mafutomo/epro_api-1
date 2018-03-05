@@ -3,7 +3,7 @@ const router = express.Router()
 const knex = require('../../knex')
 const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
-const { jwtVerifyAsync } = require('../utils/jsonwebTokenAsync')
+const { jwtVerifyAsync } = require('../utils/jsonWebTokenAsync')
 const UsersService = require('../services/UsersService')
 const { checkForToken, parseToken, verifyIsLoggedIn, checkForAccessToSecret } = require('./auth.js')
 
