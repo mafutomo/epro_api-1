@@ -28,9 +28,8 @@ const getUserByID = (req, res, next) => {
 
 const createUser = (req, res, next) => {
   let body = req.body
-  //// BCRYPT STUFF >>
-  // let salt = bcrypt.genSaltSync(4)
-  // let hash = bcrypt.hashSync(body.password, salt)
+  let salt = bcrypt.genSaltSync(4)
+  let hash = bcrypt.hashSync(body.password, salt)
    knex('users')
      .insert({
        first_name: body.firstName,
@@ -40,8 +39,8 @@ const createUser = (req, res, next) => {
        cycle_length: body.cycleLength,
        last_day: body.lastDay,
        email: body.email,
-       //// BCRYPT HASH >>
-       // password_hash: hash,
+       secret: TOKEN_SECRET,
+       password_hash: hash,
        profile_pic: body.profilePic,
        bio: body.bio,
        certifications: body.certifications,
