@@ -8,10 +8,12 @@ const trainers = require('../queries/trainers')
 const hormones = require('../queries/hormones')
 const workouts = require('../queries/workouts')
 const exercises = require('../queries/exercises')
+const login = require('../queries/login')
 
 router.use(express.static('public'))
 
 //USERS & TRAINERS
+router.post('/auth', login.authLogin)
 router.get('/users/', users.getAllUsers)
 router.get('/users/trainers/', trainers.getAllTrainers)
 router.get('/users/trainers/:id', trainers.getTrainerByID)

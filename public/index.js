@@ -1,14 +1,15 @@
 $( document ).ready(function() {
 
-    $(".button").click(function(){
+    $(".button").click(function(event){
+      event.preventDefault()
       let email = $("#email").val();
       let password = $("#password").val();
       $.ajax({
-      url: `/users`,
+      url: `/auth`,
       type: 'POST',
       data: {
         email: email,
-        password_hash: password
+        password: password
       },
       success: function(data) {
         console.log(data);

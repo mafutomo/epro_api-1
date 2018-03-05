@@ -15,7 +15,7 @@ exports.seed = function (knex, Promise) {
         last_day: '02/04/18',
         email: 'marvez@gmail.com',
         secret: 'AsfiewnChillAF',
-        password_hash: 'ruby',
+        password_hash: '$2a$10$v.XPaPHLpUdt1EtkntQf5ulEHwEwLfZaLR8bXUFqE/ASGsS1QUhMe',
         profile_pic: '',
         bio: "I'm awesome!",
         certifications: '',
