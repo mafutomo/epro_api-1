@@ -79,7 +79,7 @@ const createUser = (req, res, next) => {
  }
 
  const deleteUser = (req, res, next) => {
-   if (!req.params.id) res.sendStatus(404)
+   if (!req.params.id) res.sendStatus({"error":"user not found"})
    knex('users')
    .where({
      id: req.params.id
