@@ -19,9 +19,9 @@ router.post('/', verifyLoginBody, checkIfUserIsRegistered, tryUserLogin, generat
 function verifyLoginBody(req, res, next) {
   const { email, password } = req.body;
   if (!email && !password) {
-    res.status(401).send('email and password required');
+    res.status(401).send('Email and password required');
   } else if (!email) {
-    res.status(401).send('email required');
+    res.status(401).send('Email required');
   } else if (!password) {
     res.status(401).send('Password required');
   } else {
