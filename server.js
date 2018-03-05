@@ -11,6 +11,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const path = require('path')
 
+//CORS
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,POST,DELETE,PATCH,PUT");
@@ -26,12 +27,14 @@ app.use(bodyParser.urlencoded({
 
 app.use('/', router)
 
+//there is an error, server error!
 app.use((err, req, res, next) => {
-  res.status(500).json({"error": err});
+  res.status(500).json({"error": "server error"});
 })
 
+//user error
 app.use((req, res, next) => {
-  res.status(404).json({"error": {"message" : "404! Page not found!"}})
+  res.status(404).json({"error":"what you're requesting is not found"})
 })
 
 app.listen(port, () => {
