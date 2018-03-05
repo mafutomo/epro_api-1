@@ -9,6 +9,7 @@ const getAllTrainers = (req, res, next) => {
     is_trainer: true
   })
   .then(data => {
+    console.log(data)
     res.status(200).send(data)
   })
   .catch(err => {
