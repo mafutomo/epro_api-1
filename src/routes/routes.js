@@ -1,45 +1,46 @@
 'use strict';
-
 const express = require('express')
 const router = express.Router()
 const knex = require('../../knex')
 const bodyParser = require('body-parser')
-const queries = require('../queries/queries')
+const users = require('../queries/users')
+const trainers = require('../queries/trainers')
+const hormones = require('../queries/hormones')
+const workouts = require('../queries/workouts')
+const exercises = require('../queries/exercises')
 
 router.use(express.static('public'))
 
-//CREATE
-router.post('/users/', queries.createUser)
-router.post('/users/:id/workouts/', queries.createWorkout)
-router.post('/exercises/',queries.createExercise)
+//USERS & TRAINERS
+router.get('/users/', users.getAllUsers)
+router.get('/users/trainers/', trainers.getAllTrainers)
+router.get('/users/trainers/:id', trainers.getTrainerByID)
+router.get('/users/:id', users.getUserByID)
+router.post('/users/', users.createUser)
+router.patch('/users/:id', users.updateUser)
+router.delete('/users/:id',users.deleteUser)
 
-//READ
-router.get('/users/', queries.getAllUsers)
-router.get('/hormones/monophasic',queries.getAllMonophasic)
-router.get('/hormones/non_hormonal',queries.getAllNonHormonal)
-router.get('/hormones/triphasic',queries.getAllTriphasic)
-router.get('/hormones/progestin',queries.getAllProgestin)
-router.get('/users/trainers/', queries.getAllTrainers)
-router.get('/users/:id/workouts/', queries.getAllWorkoutsForUser) //dropdown functionality
-router.get('/phase_tips/',queries.getAllPhaseTips)
-router.get('/users/:id/workouts/:date', queries.getWorkoutsForUserByDate)
+//HORMONES
+router.get('/hormones/monophasic',hormones.getAllMonophasic)
+router.get('/hormones/non_hormonal',hormones.getAllNonHormonal)
+router.get('/hormones/triphasic',hormones.getAllTriphasic)
+router.get('/hormones/progestin',hormones.getAllProgestin)
+router.get('/hormones/monophasic/:id',hormones.getMonophasicById)
+router.get('/hormones/non_hormonal/:id',hormones.getNonHormonalById)
+router.get('/hormones/triphasic/:id',hormones.getTriphasicById)
+router.get('/hormones/progestin/:id',hormones.getProgestinById)
+router.get('/phase_tips/',hormones.getAllPhaseTips)
+router.get('/phase_tips/:id',hormones.getPhaseTipsById)
 
-//READ by id
-router.get('/users/:id', queries.getUserByID)
-router.get('/users/trainers/:id', queries.getTrainerByID)
-router.get('/hormones/monophasic/:id',queries.getMonophasicById)
-router.get('/hormones/non_hormonal/:id',queries.getNonHormonalById)
-router.get('/hormones/triphasic/:id',queries.getTriphasicById)
-router.get('/hormones/progestin/:id',queries.getProgestinById)
-router.get('/phase_tips/:id',queries.getPhaseTipsById)
+//WORKOUTS
+router.get('/users/:id/workouts/', workouts.getAllWorkoutsForUser) //dropdown functionality
+router.get('/users/:id/workouts/:date', workouts.getWorkoutsForUserByDate)
+router.post('/users/:id/workouts/', workouts.createWorkout)
+router.delete('/workouts/:id',workouts.deleteWorkout)
 
-//UPDATE
-router.patch('/users/:id', queries.updateUser)
-router.patch('/exercises/:id', queries.updateExercise)
-
-//DELETE
-router.delete('/users/:id',queries.deleteUser)
-router.delete('/workouts/:id',queries.deleteWorkout)
-router.delete('/exercises/:id',queries.deleteExercise)
+//EXERCISES
+router.post('/exercises/',exercises.createExercise)
+router.patch('/exercises/:id', exercises.updateExercise)
+router.delete('/exercises/:id',exercises.deleteExercise)
 
 module.exports = router
