@@ -2,7 +2,6 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('phase_tips', table => {
     table.increments()
-    table.string('name').notNullable()
     table.string('phase').notNullable()
     table.string('exercise_tip').notNullable()
     table.string('nutrition_tip').notNullable()
