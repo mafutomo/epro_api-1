@@ -9,6 +9,7 @@ exports.up = function(knex, Promise) {
     table.integer('cycle_length').notNullable().defaultsTo(28)
     table.date('last_day').notNullable()
     table.string('email').notNullable()
+    table.string('secret').notNull();
     table.string('password_hash').notNullable()
     table.string('profile_pic')
     table.string('bio')
