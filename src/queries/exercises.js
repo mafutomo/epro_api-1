@@ -27,7 +27,7 @@ const createExercise = (req, res, next) => {
 }
 
 const updateExercise = (req, res, next) => {
-  if (!req.params.id) res.sendStatus(404)
+  if (!req.params.id) res.sendStatus({"error":"exercise not found"})
   let body = req.body
   knex('exercises')
   .where({
@@ -54,7 +54,7 @@ const updateExercise = (req, res, next) => {
 }
 
 const deleteExercise = (req, res, next) => {
-  if (!req.params.id) res.sendStatus(404)
+  if (!req.params.id) res.sendStatus({"error":"exercise not found"})
   knex('exercises')
   .where({
     id: req.params.id
