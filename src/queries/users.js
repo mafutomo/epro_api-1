@@ -2,8 +2,12 @@ const express = require('express')
 const router = express.Router()
 const knex = require('../../knex')
 const bodyParser = require('body-parser')
+const jwt = require('jsonwebtoken')
+const { jwtVerifyAsync } = require('../utils/jsonwebTokenAsync')
+const UsersService = require('../services/UsersService')
+const { checkForToken, parseToken, verifyIsLoggedIn, checkForAccessToSecret } = require('./auth.js')
 
-const getAllUsers = (req, res, next) => {
+const getAllUsers = (checkForToken, parseToken, verifyIsLoggedIn, checkForAccessToSecret, (req, res, next)) => {
   knex('users')
     .then(data => {
       res.status(200).send(data)
@@ -39,11 +43,11 @@ const createUser = (req, res, next) => {
        cycle_length: body.cycleLength,
        last_day: body.lastDay,
        email: body.email,
-       secret: TOKEN_SECRET,
+       secret: process.env.TOKEN_SECRET,
        password_hash: hash,
        profile_pic: body.profilePic,
        bio: body.bio,
-       certifications: body.certifications,
+        certifications: body.certifications,
        trainer_id: body.trainer_id,
        is_trainer: body.isTrainer,
        is_public: body.isPublic,

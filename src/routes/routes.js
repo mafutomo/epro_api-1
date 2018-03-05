@@ -11,9 +11,10 @@ const exercises = require('../queries/exercises')
 
 router.use(express.static('public'))
 
+var isUser = true;
 //USERS
 router.get('/users/', users.getAllUsers)
-router.get('/users/:id', users.getUserByID)
+router.get('/users/:id', isUser, users.getUserByID)
 router.post('/users/', users.createUser)
 router.patch('/users/:id', users.updateUser)
 router.delete('/users/:id',users.deleteUser)

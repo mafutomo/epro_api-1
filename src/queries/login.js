@@ -7,8 +7,6 @@ const UsersService = require('../services/UsersService');
 
 const users = new UsersService();
 
-const { TOKEN_SECRET } = process.env || 'AsfiewnChillAF';
-
 router.use(bodyParser.json());
 
 router.post('/', verifyLoginBody, checkIfUserIsRegistered, tryUserLogin, generateToken, (req, res) => {
@@ -19,9 +17,9 @@ router.post('/', verifyLoginBody, checkIfUserIsRegistered, tryUserLogin, generat
 function verifyLoginBody(req, res, next) {
   const { email, password } = req.body;
   if (!email && !password) {
-    res.status(401).send('email and password required');
+    res.status(401).send('Email and password required');
   } else if (!email) {
-    res.status(401).send('email required');
+    res.status(401).send('Email required');
   } else if (!password) {
     res.status(401).send('Password required');
   } else {
@@ -74,7 +72,7 @@ async function generateToken(req, res, next) {
   };
 
   try {
-    const token = await jwtSignAsync(jwtPayload, TOKEN_SECRET, {expiresIn: '1d'});
+    const token = await jwtSignAsync(jwtPayload, process.env.TOKEN_SECRET, {expiresIn: '1d'});
     req.user.token = token;
     next();
   } catch(err) {
