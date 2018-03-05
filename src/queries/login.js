@@ -7,11 +7,9 @@ const UsersService = require('../services/UsersService');
 
 const users = new UsersService();
 
-const { TOKEN_SECRET } = process.env || 'AsfiewnChillAF';
-
 router.use(bodyParser.json());
 
-router.post('/', verifyLoginBody, checkIfUserIsRegistered, tryUserLogin, generateToken, (req, res) => {
+const loginUser = ('/users/', verifyLoginBody, checkIfUserIsRegistered, tryUserLogin, generateToken, (req, res)) => {
   const token = req.user.token;
   res.set('Auth', `Bearer: ${token}`).send('password correct, jwt set in auth cookie');
 });
@@ -74,7 +72,7 @@ async function generateToken(req, res, next) {
   };
 
   try {
-    const token = await jwtSignAsync(jwtPayload, TOKEN_SECRET, {expiresIn: '1d'});
+    const token = await jwtSignAsync(jwtPayload, process.env.TOKEN_SECRET, {expiresIn: '1d'});
     req.user.token = token;
     next();
   } catch(err) {
@@ -83,4 +81,4 @@ async function generateToken(req, res, next) {
 }
 
 
-module.exports = router;
+module.exports = { loginUser };
