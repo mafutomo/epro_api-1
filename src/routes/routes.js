@@ -11,17 +11,14 @@ const exercises = require('../queries/exercises')
 
 router.use(express.static('public'))
 
-var isUser = true;
-//USERS
+//USERS & TRAINERS
 router.get('/users/', users.getAllUsers)
-router.get('/users/:id', isUser, users.getUserByID)
+router.get('/users/trainers/', trainers.getAllTrainers)
+router.get('/users/trainers/:id', trainers.getTrainerByID)
+router.get('/users/:id', users.getUserByID)
 router.post('/users/', users.createUser)
 router.patch('/users/:id', users.updateUser)
 router.delete('/users/:id',users.deleteUser)
-
-//TRAINERS
-router.get('/users/trainers/', trainers.getAllTrainers)
-router.get('/users/trainers/:id', trainers.getTrainerByID)
 
 //HORMONES
 router.get('/hormones/monophasic',hormones.getAllMonophasic)
