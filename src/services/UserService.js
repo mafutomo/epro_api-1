@@ -1,4 +1,4 @@
-const knex = require('../knex');
+const knex = require('../../knex');
 const bcrypt = require('bcryptjs');
 
 class UsersService {
