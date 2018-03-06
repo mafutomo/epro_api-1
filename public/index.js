@@ -5,7 +5,7 @@ $( document ).ready(function() {
       let email = $("#email").val();
       let password = $("#password").val();
       $.ajax({
-      url: `/users/`,
+      url: `/login`,
       type: 'POST',
       data: {
         email: email,
