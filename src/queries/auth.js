@@ -1,7 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const { jwtVerifyAsync } = require('../utils/jsonWebTokenAsync');
-const UsersService = require('../services/UsersService');
+const UsersService = require('../services/UserService');
 
 const users = new UsersService();
 
