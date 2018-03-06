@@ -41,5 +41,10 @@ router.use(bodyParser.json());
     })
 }
 
+// const encrypt = (password) => {
+//   return bcrypt.hash(password, 10)
+// }
+// encrypt('penny').then(data => console.log(data))
+
 
 module.exports = { authLogin };

@@ -35,7 +35,7 @@ exports.seed = function (knex, Promise) {
         last_day: '02/09/18',
         email: 'mafutomo@gmail.com',
         secret: 'AsfiewnChillAF',
-        password_hash: '',
+        password_hash: '$2a$10$WC04I2HwLRyxw3t2UH/71O3qrFTJqw0tI7vaWz6Xha/DWTqYuXx5e',
         profile_pic: '',
         bio: "I'm a feminist!",
         certifications: '',
@@ -55,7 +55,7 @@ exports.seed = function (knex, Promise) {
         last_day: '02/23/18',
         email: 'andrew@gmail.com',
         secret: 'AsfiewnChillAF',
-        password_hash: '',
+        password_hash: '$2a$10$qPsT.sBZgn0Z0fJqxAKJDuhTmPeWURgENOraseocdfOa6zWjcsjhe',
         profile_pic: '',
         bio: "I need to stop eating cheeseburgers",
         certifications: '',
@@ -68,7 +68,7 @@ exports.seed = function (knex, Promise) {
         {
         id: 4,
         first_name: 'Reiko',
-        last_name: 'Matsuda-Dunn', age: 31, weight: 110, cycle_length: 28, last_day: '02/15/18', email: 'reiko@gmail.com', secret: 'AsfiewnChillAF', password_hash: '',  profile_pic: '', bio: "Hi I'm Reiko", certifications: '', trainer_id: 1, is_trainer: true, is_public: false, non_hormonal: false, triphasic: false, monophasic: false, progestin: true  }
+        last_name: 'Matsuda-Dunn', age: 31, weight: 110, cycle_length: 28, last_day: '02/15/18', email: 'reiko@gmail.com', secret: 'AsfiewnChillAF', password_hash: '$2a$10$k6d4gXCp/GCLpacdkU.ua.mPG4uVJ40/GF.NvNU1BUio/cpcqncXa',  profile_pic: '', bio: "Hi I'm Reiko", certifications: '', trainer_id: 1, is_trainer: true, is_public: false, non_hormonal: false, triphasic: false, monophasic: false, progestin: true  }
       ])
     .then(function(){
       return knex.raw(
