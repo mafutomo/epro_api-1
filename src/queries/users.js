@@ -3,9 +3,6 @@ const router = express.Router()
 const knex = require('../../knex')
 const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
-const { jwtVerifyAsync } = require('../utils/jsonWebTokenAsync')
-const UsersService = require('../services/UserService')
-const { checkForToken, parseToken, verifyIsLoggedIn, checkForAccessToSecret } = require('./auth.js')
 
 const getAllUsers = (req, res, next) => {
   knex('users')

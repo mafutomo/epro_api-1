@@ -13,7 +13,7 @@ const login = require('../queries/login')
 router.use(express.static('public'))
 
 //USERS & TRAINERS
-router.post('/auth', login.authLogin)
+router.post('/login', login.authLogin)
 router.get('/users/', users.getAllUsers)
 router.get('/users/trainers/', trainers.getAllTrainers)
 router.get('/users/trainers/:id', trainers.getTrainerByID)

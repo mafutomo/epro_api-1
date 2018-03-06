@@ -5,14 +5,14 @@ $( document ).ready(function() {
       let email = $("#email").val();
       let password = $("#password").val();
       $.ajax({
-      url: `/auth`,
+      url: `/users/`,
       type: 'POST',
       data: {
         email: email,
         password: password
       },
       success: function(data) {
-        console.log(data);
+        console.log("it's working!", data);
         // localStorage.setItem("user", data.id)
         // window.location.href = "map.html"
       },
