@@ -3,6 +3,7 @@ const router = express.Router()
 const knex = require('../../knex')
 const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
 
 const getAllUsers = (req, res, next) => {
   knex('users')
@@ -44,7 +45,7 @@ const createUser = (req, res, next) => {
        password_hash: hash,
        profile_pic: body.profilePic,
        bio: body.bio,
-        certifications: body.certifications,
+       certifications: body.certifications,
        trainer_id: body.trainer_id,
        is_trainer: body.isTrainer,
        is_public: body.isPublic,

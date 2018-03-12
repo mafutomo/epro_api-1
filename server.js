@@ -29,7 +29,7 @@ app.use('/', router)
 
 //there is an error, server error!
 app.use((err, req, res, next) => {
-  res.status(500).json({"error": "server error. it's not you, it's us."});
+  res.status(500).json({"error": err});
 })
 
 //user error
