@@ -31,14 +31,56 @@ router.use(bodyParser.json());
       const token = jwt.sign(claim, process.env.TOKEN_SECRET, {
         expiresIn: '1 day'
       })
-      res.cookie('token', token, {
-        httpOnly: true,
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
-        secure: router.get('env') === 'production'
-      })
-      // delete user.password_hash
-      res.status(201).send(user)
+      // res.cookie('token', token, {
+      //   httpOnly: true, 
+      //   expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+      //   secure: router.get('env') === 'production'
+      // })
+      res.status(201).send(token)
     })
+}
+
+const authStatus = (checkForToken, parseToken, verifyIsLoggedIn, (req, res, next) => {
+  const { email, passworrd } = req.body;
+
+  users.getUser(email)
+    .then(user => {
+      res.json(user)
+    })
+    .catch(err => {
+      res.status(500).send(`There was an error verifying user login: ${err}`)
+    })
+});
+
+function checkForToken(req, res, next) {
+  if (!req.headers.auth || !req.headers.auth.includes('Bearer')) {
+    res.sendStatus(403);
+  } else {
+    next();
+  }
+}
+
+function parseToken(req, res, next) {
+  try {
+    const token = req.headers.auth.split(' ')[1];
+    req.token = token;
+    next();
+  } catch(err) {
+    res.sendStatus(401);
+  }
+}
+
+async function verifyIsLoggedIn(req, res, next) {
+  try {
+    const decoded = await jwtVerifyAsync(req.token, TOKEN_SECRET);
+    if (!decoded.loggedIn) {
+      res.sendStatus(403);
+      return;
+    }
+    next();
+  } catch(err) {
+    res.sendStatus(403);
+  }
 }
 
 // const encrypt = (password) => {
@@ -47,4 +89,4 @@ router.use(bodyParser.json());
 // encrypt('penny').then(data => console.log(data))
 
 
-module.exports = { authLogin };
+module.exports = { authLogin, authStatus };
