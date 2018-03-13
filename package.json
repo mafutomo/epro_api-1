@@ -2,6 +2,9 @@
   "name": "capstone_api",
   "version": "1.0.0",
   "description": "E/PRO Backend API",
+  "engines": {
+    "node": "8.9.4"
+  },
   "main": "knex.js",
   "dependencies": {
     "bcrypt": "^1.0.3",
