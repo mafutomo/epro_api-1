@@ -22,11 +22,8 @@ exports.seed = function (knex, Promise) {
         trainer_id: 0,
         is_trainer: false,
         is_public: false,
-        non_hormonal: true,
-        triphasic: false,
-        monophasic: false,
-        progestin: false },
-        {
+        birth_control_type: 'non_hormonal'
+      },{
         id: 2,
         first_name: 'Melissa',
         last_name: 'Utomo',
@@ -42,10 +39,8 @@ exports.seed = function (knex, Promise) {
         trainer_id: 0,
         is_trainer: false,
         is_public: false,
-        non_hormonal: true,
-        triphasic: false,
-        monophasic: false, progestin: false  },
-        {
+        birth_control_type: 'triphasic',
+      },{
         id: 3,
         first_name: 'Andrew',
         last_name: 'Kuklinski',
@@ -62,13 +57,12 @@ exports.seed = function (knex, Promise) {
         trainer_id: 0,
         is_trainer: false,
         is_public: false,
-        non_hormonal: true,
-        triphasic: false, monophasic: false,
-        progestin: false  },
-        {
+        birth_control_type: 'monophasic',
+      },{
         id: 4,
         first_name: 'Reiko',
-        last_name: 'Matsuda-Dunn', age: 31, weight: 110, cycle_length: 28, last_day: '02/15/18', email: 'reiko@gmail.com', secret: 'AsfiewnChillAF', password_hash: '$2a$10$k6d4gXCp/GCLpacdkU.ua.mPG4uVJ40/GF.NvNU1BUio/cpcqncXa',  profile_pic: '', bio: "Hi I'm Reiko", certifications: '', trainer_id: 1, is_trainer: true, is_public: false, non_hormonal: false, triphasic: false, monophasic: false, progestin: true  }
+        last_name: 'Matsuda-Dunn', age: 31, weight: 110, cycle_length: 28, last_day: '02/15/18', email: 'reiko@gmail.com', secret: 'AsfiewnChillAF', password_hash: '$2a$10$k6d4gXCp/GCLpacdkU.ua.mPG4uVJ40/GF.NvNU1BUio/cpcqncXa',  profile_pic: '', bio: "Hi I'm Reiko", certifications: '', trainer_id: 1, is_trainer: true, is_public: false, birth_control_type: 'non_hormonal', 
+      }
       ])
     .then(function(){
       return knex.raw(
