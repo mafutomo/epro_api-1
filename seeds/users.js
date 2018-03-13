@@ -61,7 +61,7 @@ exports.seed = function (knex, Promise) {
       },{
         id: 4,
         first_name: 'Reiko',
-        last_name: 'Matsuda-Dunn', age: 31, weight: 110, cycle_length: 28, last_day: '02/15/18', email: 'reiko@gmail.com', secret: 'AsfiewnChillAF', password_hash: '$2a$10$k6d4gXCp/GCLpacdkU.ua.mPG4uVJ40/GF.NvNU1BUio/cpcqncXa',  profile_pic: '', bio: "Hi I'm Reiko", certifications: '', trainer_id: 1, is_trainer: true, is_public: false, birth_control_type: 'non_hormonal', 
+        last_name: 'Matsuda-Dunn', age: 31, weight: 110, cycle_length: 28, last_day: '02/15/18', email: 'reiko@gmail.com', secret: 'AsfiewnChillAF', password_hash: '$2a$10$k6d4gXCp/GCLpacdkU.ua.mPG4uVJ40/GF.NvNU1BUio/cpcqncXa',  profile_pic: '', bio: "Hi I'm Reiko", certifications: '', trainer_id: 1, is_trainer: true, is_public: false, birth_control_type: 'non_hormonal' 
       }
       ])
     .then(function(){
