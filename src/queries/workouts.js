@@ -19,17 +19,35 @@ const getAllWorkoutsForUser = (req, res, next) => {
 
 
 const getWorkoutsForUserByDate = (req, res, next) => {
-  console.log(req.params.date)
   knex('workouts')
   .where({
     client_id: req.params.id,
     date: req.params.date
   })
-  .then(data => {
-    res.status(200).send(data)
-  })
-  .catch(err => {
-   console.log(err)
+  .select('workouts.id','workouts.date','workouts.client_id')
+  .then(workouts => {
+    // console.log(workouts);
+    let promises = workouts.map(workout => {
+      // console.log(workout);
+      return knex('exercises')
+      .select('*')
+      .join('workouts_exercises','exercises.id','workouts_exercises.exercise_id')
+      .where('workouts_exercises.workout_id',workout.id)
+      .select('*')
+      .then( exercises => {
+        workout.exercises = exercises
+        console.log(workout)
+        return workout
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    })
+
+    Promise.all(promises).then(data => {
+       res.status(200).json(data)
+     })
+
   })
 }
 
