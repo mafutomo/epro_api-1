@@ -46,13 +46,10 @@ const createUser = (req, res, next) => {
        profile_pic: body.profilePic,
        bio: body.bio,
        certifications: body.certifications,
-       trainer_id: body.trainer_id,
+       trainer_id: body.trainerId,
        is_trainer: body.isTrainer,
        is_public: body.isPublic,
-       non_hormonal: body.isNonHormonal,
-       triphasic: body.isTriphasic,
-       monophasic: body.isMonophasic,
-       progestin: body.isProgestin
+       birth_control_type: body.birthControlType,
    }, '*')
    .then(data => {
      res.status(200).send(data)
