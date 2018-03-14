@@ -14,7 +14,7 @@ router.use(express.static('public'))
 
 //USERS & TRAINERS
 router.post('/login', login.authLogin)
-router.get('/auth/status', login.authStatus)
+router.post('/auth/status', login.authStatus)
 router.get('/users/', users.getAllUsers)
 router.get('/users/trainers/', trainers.getAllTrainers)
 router.get('/users/trainers/:id', trainers.getTrainerByID)
