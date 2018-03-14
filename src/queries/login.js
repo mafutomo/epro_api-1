@@ -29,6 +29,8 @@ router.use(bodyParser.json());
       const token = jwt.sign(claim, process.env.TOKEN_SECRET, {
         expiresIn: '1 day'
       })
+      console.log(token);
+      console.log(claim);
       res.status(201).send({token, claim})
     })
 }

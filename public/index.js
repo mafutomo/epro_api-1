@@ -5,7 +5,7 @@ $( document ).ready(function() {
       let email = $("#email").val();
       let password = $("#password").val();
       $.ajax({
-        url: `https://e-pro-api.herokuapp.com/login`,
+        url: `https://epro-fitness-api.herokuapp.com/login`,
         type: 'POST',
         data: {
           email: email,
