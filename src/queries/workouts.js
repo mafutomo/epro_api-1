@@ -47,7 +47,6 @@ const getWorkoutsForUserByDate = (req, res, next) => {
     Promise.all(promises).then(data => {
        res.status(200).json(data)
      })
-
   })
 }
 
