@@ -42,6 +42,7 @@ router.post('/users/:id/workouts/', workouts.createWorkout)
 router.delete('/workouts/:id',workouts.deleteWorkout)
 
 //EXERCISES
+router.post('/users/:id/workouts/:date', exercises.createUserExercise)
 router.post('/exercises/',exercises.createExercise)
 router.patch('/exercises/:id', exercises.updateExercise)
 router.delete('/exercises/:id',exercises.deleteExercise)
