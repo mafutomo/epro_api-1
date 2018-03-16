@@ -37,7 +37,14 @@ const createUserExercise = (req, res, next) => {
         },'*')
         .then(data => {
           console.log("Join Data! ==>", data)
-          res.status(200).send(data)
+          knex('exercises')
+          .where({
+            id: newExerciseID,
+          })
+          .then(data => {
+            res.status(200).send(data)
+          })
+
         })
     })
     .catch(err => {
