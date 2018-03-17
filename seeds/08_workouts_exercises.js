@@ -19,6 +19,22 @@ exports.seed = function(knex, Promise) {
         {id: 12, workout_id: 7, exercise_id:15},
         {id: 13, workout_id: 7, exercise_id:1},
         {id: 14, workout_id: 6, exercise_id:16},
+
+        {id: 15, workout_id: 7, exercise_id:16},
+        {id: 16, workout_id: 7, exercise_id:16},
+        {id: 17, workout_id: 8, exercise_id:16},
+        {id: 18, workout_id: 8, exercise_id:16},
+        {id: 19, workout_id: 9, exercise_id:16},
+        {id: 20, workout_id: 9, exercise_id:16},
+        {id: 21, workout_id: 10, exercise_id:16},
+        {id: 22, workout_id: 10, exercise_id:16},
+
+        {id: 23, workout_id: 11, exercise_id:118},
+        {id: 24, workout_id: 11, exercise_id:119},
+        {id: 25, workout_id: 11, exercise_id:120},
+        {id: 26, workout_id: 12, exercise_id:122},
+        {id: 27, workout_id: 12, exercise_id:123},
+        {id: 28, workout_id: 12, exercise_id:124},
       ])
     }).then(() => {
       return knex.raw(`SELECT setval('workouts_exercises_id_seq', (SELECT MAX(id) FROM workouts_exercises));`

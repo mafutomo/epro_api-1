@@ -95,117 +95,10 @@ const createUserExercise = (req, res, next) => {
       console.log(err);
     })
 
-
-    // console.log("#1 ==>",data);
-    // var exerciseID = data[0].id
-    // console.log(data[0].id);
-    // knex('workouts')
-    // .insert({
-    //    client_id: req.params.id,
-    //    trainer_id: req.params.id,
-    //    date: req.params.date,
-    //    created_by_trainer: false,
-    // },'*')
-    //
-    // .then(data => {
-    //   var workoutID = data[0].id
-    //   console.log("#2 ==>",data);
-    //   knex('workouts_exercises')
-    //   .insert({
-    //     workout_id: workoutID,
-    //     exercise_id:exerciseID,
-    //   },'*')
-    //   .then(data => {
-    //     console.log("#3 ==>", data);
-    //     res.status(200).send(data)
-    //   })
-    //   .catch(err => {
-    //    console.log(err)
-    //    })
-    // })
   })
 
 }
 
-//anonymous {
-//   id: 7,
-//   date: 2018-03-16T06:00:00.000Z,
-//   client_id: 1,
-//   exercises:
-//    [ anonymous {
-//        id: 13,
-//        name: 'Ab Roller',
-//        description: '',
-//        sets: 0,
-//        sets_actual: 0,
-//        reps: 0,
-//        reps_actual: 0,
-//        weight: 0,
-//        weight_actual: 0,
-//        time: '0',
-//        time_actual: 0,
-//        created_at: 2018-03-15T05:52:45.573Z,
-//        updated_at: 2018-03-15T05:52:45.573Z,
-//        workout_id: 7,
-//        exercise_id: 1 },
-//      anonymous {
-//        id: 12,
-//        name: 'Campus Board Ladder',
-//        description: '',
-//        sets: 0,
-//        sets_actual: 0,
-//        reps: 0,
-//        reps_actual: 0,
-//        weight: 0,
-//        weight_actual: 0,
-//        time: '0',
-//        time_actual: 0,
-//        created_at: 2018-03-15T05:52:45.573Z,
-//        updated_at: 2018-03-15T05:52:45.573Z,
-//        workout_id: 7,
-//        exercise_id: 15 } ] }
-// anonymous {
-//   id: 11,
-//   date: 2018-03-16T06:00:00.000Z,
-//   client_id: 1,
-//   exercises:
-//    [ anonymous {
-//        id: 16,
-//        name: 'Squats',
-//        description: null,
-//        sets: 1,
-//        sets_actual: null,
-//        reps: 3,
-//        reps_actual: null,
-//        weight: 150,
-//        weight_actual: null,
-//        time: '01:00',
-//        time_actual: null,
-//        created_at: 2018-03-16T05:03:12.289Z,
-//        updated_at: 2018-03-16T05:03:12.289Z,
-//        workout_id: 11,
-//        exercise_id: 126 } ] }
-// anonymous {
-//   id: 10,
-//   date: 2018-03-16T06:00:00.000Z,
-//   client_id: 1,
-//   exercises:
-//    [ anonymous {
-//        id: 15,
-//        name: 'Squats',
-//        description: null,
-//        sets: 1,
-//        sets_actual: null,
-//        reps: 3,
-//        reps_actual: null,
-//        weight: 150,
-//        weight_actual: null,
-//        time: '01:00',
-//        time_actual: null,
-//        created_at: 2018-03-16T05:00:26.401Z,
-//        updated_at: 2018-03-16T05:00:26.401Z,
-//        workout_id: 10,
-//        exercise_id: 125 } ] }
 
 const createExercise = (req, res, next) => {
   let body = req.body
@@ -258,20 +151,21 @@ const updateExercise = (req, res, next) => {
 }
 
 const deleteExercise = (req, res, next) => {
-  if (!req.params.id) res.sendStatus({"error":"exercise not found"})
-  knex('exercises')
-  .where({
-    id: req.params.id
-  })
-  .del()
-  .returning('*')
-  .then(data => {
-    res.status(200).send(data)
-  })
-  .catch(err => {
-   console.log(err)
-   })
-}
+  if (!req.params.exercise_id) res.sendStatus({"error":"exercise not found"})
+  knex("workouts_exercises")
+    .where({
+      id: req.params.workout_exercise_id
+    })
+    .del()
+    .returning('*')
+    .then( joinData => {
+      res.status(200).send(joinData)
+    })
+    .catch(err => {
+     console.log(err)
+     })
+  }
+
 
 
 module.exports = {

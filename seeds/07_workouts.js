@@ -12,6 +12,11 @@ exports.seed = function (knex, Promise) {
         { id: 5, client_id: 1, trainer_id: 1, date: '03/14/18', name: 'Power Hour', created_by_trainer: true },
         { id: 6, client_id: 1, trainer_id: 1, date: '03/15/18', name: 'Fun Workout', created_by_trainer: true },
         { id: 7, client_id: 1, trainer_id: 1, date: '03/16/18', name: 'Cardio', created_by_trainer: true },
+        { id: 8, client_id: 1, trainer_id: 1, date: '03/17/18', name: 'Crushing Stuff', created_by_trainer: true },
+        { id: 9, client_id: 1, trainer_id: 1, date: '03/18/18', name: 'Flexability', created_by_trainer: true },
+        { id: 10, client_id: 1, trainer_id: 1, date: '03/19/18', name: 'Strength', created_by_trainer: true },
+        { id: 11, client_id: 1, trainer_id: 1, date: '03/20/18', name: 'Rest Week', created_by_trainer: true },
+        { id: 12, client_id: 1, trainer_id: 1, date: '03/21/18', name: 'Training for Project', created_by_trainer: true },
       ])
     }).then(() => {
       return knex.raw(
