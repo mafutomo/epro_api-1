@@ -21,31 +21,75 @@ const createUserExercise = (req, res, next) => {
   .then( data => {
     var newExerciseID = data[0].id
     console.log("New Exercise Data = ",data);
-    knex('workouts')
+
+    knex.select('*')
     .where({
       date: req.params.date,
       client_id: req.params.id,
     })
+    .from('workouts')
     .then(data => {
+      console.log("this is DATA",data);
+      if(!data.length) {
 
-      var existingWorkoutID = data[0].id
-
-        knex('workouts_exercises')
+        console.log("THIS IS NONE");
+        knex('workouts')
         .insert({
-          workout_id: existingWorkoutID,
-          exercise_id: newExerciseID,
+           client_id: req.params.id,
+           trainer_id: req.params.id,
+           date: req.params.date,
+           created_by_trainer: false,
         },'*')
-        .then(data => {
-          console.log("Join Data! ==>", data)
-          knex('exercises')
-          .where({
-            id: newExerciseID,
-          })
-          .then(data => {
-            res.status(200).send(data)
-          })
-
+        .then( data => {
+            var newWorkoutID = data[0].id
+            console.log("#2 ==>",data);
+            knex('workouts_exercises')
+            .insert({
+              workout_id: newWorkoutID,
+              exercise_id: newExerciseID,
+            },'*')
+            .then( data => {
+              knex('exercises')
+              .where({
+                id: newExerciseID,
+              })
+              .then(data => {
+                  res.status(200).send(data)
+              })
+              .catch(err => {
+                  console.log(err);
+              })
+            })
+            .catch( err => {
+              console.log(err);
+            })
         })
+
+      } else {
+
+        var existingWorkoutID = data[0].id
+
+          knex('workouts_exercises')
+          .insert({
+            workout_id: existingWorkoutID,
+            exercise_id: newExerciseID,
+          },'*')
+          .then(data => {
+            console.log("Join Data! ==>", data)
+            knex('exercises')
+            .where({
+              id: newExerciseID,
+            })
+            .then(data => {
+              res.status(200).send(data)
+            })
+            .catch(err => {
+              console.log(err);
+            })
+
+          })
+      }
+
     })
     .catch(err => {
       console.log(err);
