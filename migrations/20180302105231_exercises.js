@@ -11,6 +11,7 @@ exports.up = function(knex, Promise) {
     table.string('weight').notNullable().defaultsTo('- Ibs')
     table.string('weight_actual')
     table.string('time').notNullable().defaultsTo('-')
+    table.boolean('isPublic').notNullable().defaultsTo(false)
     table.integer('time_actual')
     table.timestamp('created_at').notNullable().defaultsTo(knex.raw('now()'))
     table.timestamp('updated_at').notNullable().defaultsTo(knex.raw('now()'))
