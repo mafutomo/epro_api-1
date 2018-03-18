@@ -47,7 +47,6 @@ const getWorkoutsForUserByDate = (req, res, next) => {
     Promise.all(promises).then(data => {
        res.status(200).json(data)
      })
-
   })
 }
 
@@ -74,7 +73,7 @@ const getWorkoutsForUserByDate = (req, res, next) => {
 
  const deleteWorkout = (req, res, next) => {
    if (!req.params.id) res.sendStatus(404)
-   knex('workouts')
+   knex('workouts_exercises')
    .where({
      id: req.params.id
    })
@@ -92,5 +91,5 @@ module.exports = {
   getAllWorkoutsForUser,
   getWorkoutsForUserByDate,
   createWorkout,
-  deleteWorkout
+  deleteWorkout,
 }
