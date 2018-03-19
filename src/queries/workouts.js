@@ -19,6 +19,8 @@ const getAllWorkoutsForUser = (req, res, next) => {
 
 
 const getWorkoutsForUserByDate = (req, res, next) => {
+  console.log(req.params.id);
+  console.log(req.params.date);
   knex('workouts')
   .where({
     client_id: req.params.id,
@@ -26,9 +28,9 @@ const getWorkoutsForUserByDate = (req, res, next) => {
   })
   .select('workouts.id','workouts.date','workouts.client_id')
   .then(workouts => {
-    // console.log(workouts);
+    console.log(workouts);
     let promises = workouts.map(workout => {
-      // console.log(workout);
+      console.log(workout);
       return knex('exercises')
       .select('*')
       .join('workouts_exercises','exercises.id','workouts_exercises.exercise_id')

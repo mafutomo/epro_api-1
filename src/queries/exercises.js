@@ -166,11 +166,25 @@ const deleteExercise = (req, res, next) => {
      })
   }
 
+const getAllPublic = (req, res, next) => {
+  knex("exercises")
+  .where({
+    isPublic:true
+  })
+  .then( data => {
+    res.status(200).send(data)
+  })
+  .catch(err=> {
+
+  })
+}
+
 
 
 module.exports = {
   createExercise,
   updateExercise,
   deleteExercise,
-  createUserExercise
+  createUserExercise,
+  getAllPublic,
 }

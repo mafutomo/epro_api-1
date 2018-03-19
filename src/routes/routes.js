@@ -42,9 +42,11 @@ router.post('/users/:id/workouts/', workouts.createWorkout)
 router.delete('/workouts/:id',workouts.deleteWorkout)
 
 //EXERCISES
+router.get('/exercises/', exercises.getAllPublic)
 router.post('/users/:id/workouts/:date', exercises.createUserExercise)
 router.post('/exercises/',exercises.createExercise)
 router.patch('/exercises/:id', exercises.updateExercise)
 router.delete('/exercises/:workout_exercise_id/:exercise_id/',exercises.deleteExercise)
+
 
 module.exports = router
