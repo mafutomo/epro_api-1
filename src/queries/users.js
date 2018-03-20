@@ -29,6 +29,7 @@ const getUserByID = (req, res, next) => {
 }
 
 const createUser = (req, res, next) => {
+  console.log("this is happening");
   let body = req.body
   let salt = bcrypt.genSaltSync(4)
   let hash = bcrypt.hashSync(body.password, salt)
