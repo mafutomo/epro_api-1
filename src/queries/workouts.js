@@ -30,7 +30,7 @@ const getWorkoutsForUserByDate = (req, res, next) => {
   .then(workouts => {
     console.log(workouts);
     let promises = workouts.map(workout => {
-      // console.log(workout);
+      console.log(workout);
       return knex('exercises')
       .select('*')
       .join('workouts_exercises','exercises.id','workouts_exercises.exercise_id')

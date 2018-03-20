@@ -28,7 +28,6 @@ exports.seed = function(knex, Promise) {
         {id: 20, workout_id: 9, exercise_id:16},
         {id: 21, workout_id: 10, exercise_id:16},
         {id: 22, workout_id: 10, exercise_id:16},
-
         {id: 23, workout_id: 11, exercise_id:118},
         {id: 24, workout_id: 11, exercise_id:119},
         {id: 25, workout_id: 11, exercise_id:120},
